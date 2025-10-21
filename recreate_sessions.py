@@ -1,4 +1,5 @@
 import networkx as nx
+import random
 
 
 class SessionGraphConstructer:
@@ -7,17 +8,32 @@ class SessionGraphConstructer:
         self.kind = kind
 
     def construct(self, session):
+        # converts a session into directed graph
         if self.kind == "simple":
             graph = self.simple_session(session)
             return graph
 
     def simple_session(self, session):
+        # simple session DiGraph, where an item is only connected to next item
         G = nx.DiGraph()
         n = len(session)
         for i in range(n-1):
             G.add_edge(session[i], session[i+1])
         
         return G
+    
+class Combiner:
+
+    def __init__(self):
+        pass
+
+    def combine(self, sessions, n_groups=1, kind="random"):
+        pass
+
+    def splitter(self, n_groups, kind):
+        pass
+
+        
 
 def get_session_graphs(sessions):
 
