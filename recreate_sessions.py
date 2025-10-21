@@ -28,11 +28,23 @@ class Combiner:
         pass
 
     def combine(self, sessions, n_groups=1, kind="random"):
-        pass
+        
+        if kind == "random":
+            graphs = self.random_split(sessions, n_groups)
 
-    def splitter(self, n_groups, kind):
-        pass
+        return graphs
 
+    def random_split(self, sessions, n_groups):
+        
+        random.shuffle(sessions)
+        groups = [sessions[i::n_groups] for i in range(n_groups)]
+
+        graphs = []
+        for group in groups:
+            graph = nx.compose_all(group)
+            graphs.append(graph)
+
+        return graphs
         
 
 def get_session_graphs(sessions):
