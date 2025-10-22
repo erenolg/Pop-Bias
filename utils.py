@@ -1,5 +1,6 @@
 import os
 import pickle
+import numpy as np
 
 
 def load_yoochoose():
@@ -21,3 +22,16 @@ def load_yoochoose():
 
     return all_train_seq, train, test
 
+
+def analyze(original, generated):
+    print(f"""
+    Original:
+
+    #num sessions      : {len(original)}
+    avg session length : {sum([len(i) for i in original]) / len(original)}
+
+    Generated:
+
+    #num sessions      : {len(generated)}
+    avg session length : {sum([len(i) for i in generated]) / len(generated)}
+        """)    
